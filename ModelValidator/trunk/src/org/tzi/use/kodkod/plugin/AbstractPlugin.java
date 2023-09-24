@@ -24,7 +24,7 @@ public abstract class AbstractPlugin {
 	protected MModel mModel;
 	protected MSystem mSystem;
 
-	protected void initialize(Session session) {
+	public void initialize(Session session) {
 		this.session = session;
 		mSystem = session.system();
 		mModel = mSystem.model();

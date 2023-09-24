@@ -87,7 +87,7 @@ public class KodkodValidateCmd extends ConfigurablePlugin implements IPluginShel
 	 * Configures the model from the first configuration section of the configuration file,
 	 * extracts an object diagram and calls the model validator.
 	 */
-	protected final void extractConfigureAndValidate(File file) {
+	public void extractConfigureAndValidate(File file) {
 		try {
 			extractConfigureAndValidate(extractConfigFromFile(file));
 		} catch (ConfigurationException e) {

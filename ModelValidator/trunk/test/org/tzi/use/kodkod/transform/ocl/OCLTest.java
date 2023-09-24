@@ -16,8 +16,12 @@ import kodkod.ast.Formula;
 import kodkod.ast.Node;
 import kodkod.ast.Variable;
 
+import org.apache.commons.configuration.Configuration;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.BeforeClass;
+import org.tzi.kodkod.KodkodModelValidator;
 import org.tzi.kodkod.helper.PrintHelper;
+import org.tzi.kodkod.model.config.ConfigurationFileManager;
 import org.tzi.kodkod.model.iface.IClass;
 import org.tzi.kodkod.model.iface.IModel;
 import org.tzi.kodkod.ocl.OCLGroupRegistry;
@@ -31,14 +35,22 @@ import org.tzi.kodkod.ocl.operation.SetOperationGroup;
 import org.tzi.kodkod.ocl.operation.VariableOperationGroup;
 import org.tzi.use.config.Options;
 import org.tzi.use.config.Options.WarningType;
+import org.tzi.use.kodkod.UseKodkodModelValidator;
+import org.tzi.use.kodkod.plugin.KodkodValidateCmd;
+import org.tzi.use.kodkod.plugin.KodkodValidateConfigurationAction;
 import org.tzi.use.kodkod.plugin.PluginModelFactory;
+import org.tzi.use.kodkod.plugin.gui.model.data.SettingsConfiguration;
+import org.tzi.use.kodkod.plugin.gui.util.ChangeConfiguration;
 import org.tzi.use.main.Session;
 import org.tzi.use.main.shell.Shell;
 import org.tzi.use.parser.ocl.OCLCompiler;
 import org.tzi.use.parser.use.USECompiler;
+import org.tzi.use.parser.use.USECompilerMulti;
 import org.tzi.use.uml.mm.MModel;
 import org.tzi.use.uml.mm.ModelFactory;
+import org.tzi.use.uml.mm.MultiModelFactory;
 import org.tzi.use.uml.sys.MSystem;
+import org.tzi.use.kodkod.*;
 
 /**
  * @author Hendrik
@@ -51,7 +63,7 @@ public class OCLTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		File file = new File("test/org/tzi/use/kodkod/transform/ocl/testModel.use");
+		File file = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/testModel.use");
 
 		MModel mModel;
 		try (FileInputStream specStream = new FileInputStream(file)){

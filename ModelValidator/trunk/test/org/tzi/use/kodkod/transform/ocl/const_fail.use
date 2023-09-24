@@ -1,0 +1,19 @@
+model model1
+
+class Employee
+attributes
+  salary : Integer
+end
+
+constraints
+
+context Employee
+  inv PositiveSalary:
+    self.salary = 5
+
+context Employee
+  inv TenSalary:
+    self.salary = 10
+
+
+
