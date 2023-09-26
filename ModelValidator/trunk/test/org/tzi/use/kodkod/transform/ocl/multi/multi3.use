@@ -1,0 +1,79 @@
+multi_model test5
+
+--model1
+model model1
+
+class Employee
+attributes
+  name : String
+  salary : Integer
+end
+
+class Manager < Employee
+attributes
+	level: String
+end
+
+class Worker < Employee
+end
+
+
+class Company
+attributes
+    name : String
+    location : String
+end
+
+association Works between
+    Employee[*] role workers
+    Company[0..1] role company
+end
+
+
+constraints
+--model 1
+context Employee
+  inv PositiveSalary:
+    self.salary > 0
+
+context Company
+	--a student must attend with a manager of level 'A' who is not his supervisor.
+
+	inv meeting1:
+		self.workers->exists(w | w.oclIsTypeOf(Manager)) and self.workers->select( w | w.oclIsTypeOf(Manager) )->size() > self.workers->select( w | w.oclIsTypeOf(Worker) )->size()
+
+--model2
+model model2
+
+class Student
+attributes
+  name : String
+  grade : Integer
+  salary : Integer
+end
+
+class School
+attributes
+  name : String
+  location : String
+end
+
+class Meeting
+attributes
+	start_: Integer
+	end_: Integer
+end
+
+association Studies between
+    Student[*] role students
+    School[0..1] role school
+end
+
+constraints
+--model2
+context Student inv:
+    self.grade >= 0 and self.grade <= 100
+
+
+
+

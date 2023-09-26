@@ -1,0 +1,49 @@
+multi_model multi1
+
+model model1
+
+class Employee
+attributes
+  salary : Integer
+end
+
+constraints
+
+context Employee
+  inv PositiveSalary:
+    self.salary = 5
+
+
+model model2
+
+class Student
+attributes
+  grade : Integer
+  salary : Integer
+end
+
+constraints
+
+context Student inv:
+    self.grade >= 0 and self.grade <= 100
+
+
+model model3
+
+class School
+attributes
+  name : String
+  rating : Integer
+end
+
+constraints
+
+context School
+  inv GoodRating:
+    self.rating = 5
+
+context School
+  inv BadRating:
+    self.rating = 10
+
+
