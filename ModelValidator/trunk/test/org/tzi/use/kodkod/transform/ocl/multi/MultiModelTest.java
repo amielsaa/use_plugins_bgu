@@ -75,8 +75,7 @@ public class MultiModelTest extends TestCase{
         MModel mModel;
         MMultiModel multiModel;
         try (FileInputStream specStream = new FileInputStream(file)){
-            multiModel = USECompilerMulti.compileMultiSpecification(specStream, "multi_const_fail.use", new PrintWriter(System.err), new MultiModelFactory());
-            mModel = multiModel.toMModel();
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "multi_const_fail.use", new PrintWriter(System.err), new MultiModelFactory());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -101,8 +100,7 @@ public class MultiModelTest extends TestCase{
         MModel mModel;
         MMultiModel multiModel;
         try (FileInputStream specStream = new FileInputStream(file)){
-            multiModel = USECompilerMulti.compileMultiSpecification(specStream, "multi_const_success.use", new PrintWriter(System.err), new MultiModelFactory());
-            mModel = multiModel.toMModel();
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "multi_const_success.use", new PrintWriter(System.err), new MultiModelFactory());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -128,8 +126,7 @@ public class MultiModelTest extends TestCase{
         MModel mModel;
         MMultiModel multiModel;
         try (FileInputStream specStream = new FileInputStream(file)){
-            multiModel = USECompilerMulti.compileMultiSpecification(specStream, "multi1.use", new PrintWriter(System.err), new MultiModelFactory());
-            mModel = multiModel.toMModel();
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "multi1.use", new PrintWriter(System.err), new MultiModelFactory());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -154,8 +151,7 @@ public class MultiModelTest extends TestCase{
         MModel mModel;
         MMultiModel multiModel;
         try (FileInputStream specStream = new FileInputStream(file)) {
-            multiModel = USECompilerMulti.compileMultiSpecification(specStream, "multi2.use", new PrintWriter(System.err), new MultiModelFactory());
-            mModel = multiModel.toMModel();
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "multi2.use", new PrintWriter(System.err), new MultiModelFactory());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -180,8 +176,7 @@ public class MultiModelTest extends TestCase{
         MModel mModel;
         MMultiModel multiModel;
         try (FileInputStream specStream = new FileInputStream(file)){
-            multiModel = USECompilerMulti.compileMultiSpecification(specStream, "multi3.use", new PrintWriter(System.err), new MultiModelFactory());
-            mModel = multiModel.toMModel();
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "multi3.use", new PrintWriter(System.err), new MultiModelFactory());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -202,12 +197,10 @@ public class MultiModelTest extends TestCase{
 
     @Test
     public void test8() throws FileNotFoundException {
-        File file = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/mmContradictory.use");
+        File file = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/multi5.use");
         MModel mModel;
-        MMultiModel multiModel;
         try (FileInputStream specStream = new FileInputStream(file)){
-            multiModel = USECompilerMulti.compileMultiSpecification(specStream, "mmContradictory.use", new PrintWriter(System.err), new MultiModelFactory());
-            mModel = multiModel.toMModel();
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "multi5.use", new PrintWriter(System.err), new MultiModelFactory());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -218,13 +211,87 @@ public class MultiModelTest extends TestCase{
         PrintWriter errorWriter = new PrintWriter(System.out);
 
         IModel model = PluginModelFactory.INSTANCE.getModel(mModel);
-        File f = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/mmContradictory.properties");
+        File f = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/multi5.properties");
         KodkodValidateConfigurationAction cmd = new KodkodValidateConfigurationAction();
         cmd.initialize(session);
         cmd.extractConfigureAndValidate(f);
 
         System.out.println("Should be unsatisfiable");
     }
+
+    @Test
+    public void test9() throws FileNotFoundException {
+        File file = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/multi6.use");
+        MModel mModel;
+        try (FileInputStream specStream = new FileInputStream(file)){
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "multi6.use", new PrintWriter(System.err), new MultiModelFactory());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Session session = new Session();
+        MSystem mSystem = new MSystem(mModel);
+        session.setSystem(mSystem);
+        PrintWriter errorWriter = new PrintWriter(System.out);
+
+        IModel model = PluginModelFactory.INSTANCE.getModel(mModel);
+        File f = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/multi6.properties");
+        KodkodValidateConfigurationAction cmd = new KodkodValidateConfigurationAction();
+        cmd.initialize(session);
+        cmd.extractConfigureAndValidate(f);
+
+        System.out.println("Should be unsatisfiable");
+    }
+
+    @Test
+    public void test10() throws FileNotFoundException {
+        File file = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/multi7.use");
+        MModel mModel;
+        try (FileInputStream specStream = new FileInputStream(file)){
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "multi7.use", new PrintWriter(System.err), new MultiModelFactory());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Session session = new Session();
+        MSystem mSystem = new MSystem(mModel);
+        session.setSystem(mSystem);
+        PrintWriter errorWriter = new PrintWriter(System.out);
+
+        IModel model = PluginModelFactory.INSTANCE.getModel(mModel);
+        File f = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/multi7.properties");
+        KodkodValidateConfigurationAction cmd = new KodkodValidateConfigurationAction();
+        cmd.initialize(session);
+        cmd.extractConfigureAndValidate(f);
+
+        System.out.println("Should be unsatisfiable");
+    }
+
+    @Test
+    public void test11() throws FileNotFoundException {
+        File file = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/Employees.use");
+        MModel mModel;
+        try (FileInputStream specStream = new FileInputStream(file)){
+            mModel = USECompilerMulti.compileMultiSpecification(specStream, "Employees.use", new PrintWriter(System.err), new MultiModelFactory());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Session session = new Session();
+        MSystem mSystem = new MSystem(mModel);
+        session.setSystem(mSystem);
+        PrintWriter errorWriter = new PrintWriter(System.out);
+
+        IModel model = PluginModelFactory.INSTANCE.getModel(mModel);
+        File f = new File("trunk/test/org/tzi/use/kodkod/transform/ocl/multi/Employees.properties");
+        KodkodValidateConfigurationAction cmd = new KodkodValidateConfigurationAction();
+        cmd.initialize(session);
+        cmd.extractConfigureAndValidate(f);
+
+        System.out.println("Should be unsatisfiable");
+    }
+
+
 
 
 

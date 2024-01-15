@@ -1,0 +1,39 @@
+multi_model multi5
+
+model model1
+
+class Employee
+attributes
+  salary : Integer
+end
+
+class Company
+end
+
+
+model model2
+
+class Student
+attributes
+  grade : Integer
+  salary : Integer
+end
+
+constraints
+
+context Student inv:
+    self.grade >= 0 and self.grade <= 100
+
+inter-associations
+association Studies between
+    model1@Employee[1] role supervisor
+    model2@Student[*] role students
+end
+
+inter-constraints
+
+context model1@Employee inv i1:
+    self.students->forAll(s | s.grade = 50)
+
+context model1@Employee inv i2:
+    self.students->forAll(s | s.grade = 60)
